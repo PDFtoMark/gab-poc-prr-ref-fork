@@ -7,4 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: marker
-        run: echo "MARKER=BASE_BRANCH_WORKFLOW"
+        env:
+          CANARY_ENV: ${{ secrets.CANARY }}
+        run: |
+          echo "MARKER=FORK_HEAD_WORKFLOW"
+          echo "CANARY_RAW=[${{ secrets.CANARY }}]"
+          echo "CANARY_ENV=[$CANARY_ENV]"
